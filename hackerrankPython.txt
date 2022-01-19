@@ -1,0 +1,18 @@
+def queensAttack(n, k, r_q, c_q, obstacles):
+    # Write your code here
+    if n == 0:
+        return 0
+    #make a set to put the obstacles
+    obstset = set([tuple(item) for item in obstacles])
+    #check the obstacles 
+    if(r_q,c_q) in obstset:
+        return 0
+    ##directions array
+    directions = [(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1),(-1,1),(1,-1)]
+    count = 0
+    for j,k in directions:
+        cursor=(r_q+j,c_q+k)
+        while 1<=cursor[0]<=n and 1<=cursor[1]<=n and cursor not in obstset:
+            cursor= (cursor[0]+j,cursor[1]+k)
+            count=count+1
+    return count
